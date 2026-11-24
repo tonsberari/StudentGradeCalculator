@@ -23,3 +23,10 @@ def test_letter_grade_d():
 
 def test_letter_grade_f():
     assert get_letter_grade(45) == "F"
+
+import pytest
+
+
+def test_empty_grades():
+    with pytest.raises(ValueError, match="Grade list cannot be empty"):
+        calculate_average([])

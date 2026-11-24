@@ -1,7 +1,12 @@
+
 def calculate_average(grades):
+    if not grades:
+        raise ValueError("Grade list cannot be empty.")
+
     total = 0
     for grade in grades:
         total += grade
+
     return total / len(grades)
 
 
@@ -21,6 +26,7 @@ def get_letter_grade(average):
 def display_result(grades):
     average = calculate_average(grades)
     letter = get_letter_grade(average)
+
     print("Average:", average)
     print("Letter Grade:", letter)
 
