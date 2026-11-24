@@ -30,3 +30,36 @@ import pytest
 def test_empty_grades():
     with pytest.raises(ValueError, match="Grade list cannot be empty"):
         calculate_average([])
+
+
+from calculator import display_result
+
+
+def test_display_result(capsys):
+    display_result([80, 90, 100])
+
+    captured = capsys.readouterr()
+
+    assert "Average: 90.0" in captured.out
+    assert "Letter Grade: A" in captured.out
+
+
+def test_display_result_b(capsys):
+    display_result([80, 85, 90])
+
+    captured = capsys.readouterr()
+
+    assert "Average: 85.0" in captured.out
+    assert "Letter Grade: B" in captured.out
+
+
+def test_single_grade():
+    assert calculate_average([75]) == 75
+
+
+def test_zero_grade():
+    assert calculate_average([0]) == 0
+
+
+def test_decimal_grades():
+    assert calculate_average([85.5, 90.5]) == 88.0
